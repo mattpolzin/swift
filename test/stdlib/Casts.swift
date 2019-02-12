@@ -78,6 +78,11 @@ CastsTests.test("Optional<T>.none can be casted to Optional<U>.none in generic c
 
   expectEqual(type(of: test(Bool.self)), Bool?.self)
   expectEqual(type(of: test(Bool?.self)), Bool??.self)
+
+  guard let x = test(Bool?.self) else {
+    assertionFailure() // Bool?? should successfully unwrap to Bool?
+    return
+  }
 }
 
 #if _runtime(_ObjC)
